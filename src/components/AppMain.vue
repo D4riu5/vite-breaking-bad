@@ -49,7 +49,7 @@ export default {
                         <div class="bg-dark text-white p-2">
                             Found {{ store.characters.length }} cards
                         </div>
-                        <div  class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 p-4">
+                        <div  class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 p-4">
                             <!-- <div v-for="character in store.characters" class="col text-center">
                                 <CharacterCard :character="character"/>
                             </div> -->

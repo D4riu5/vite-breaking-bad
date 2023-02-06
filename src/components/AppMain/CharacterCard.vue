@@ -41,7 +41,7 @@ export default {
             <div>
                 <img class="img-fluid" :src="character.card_images[0].image_url" alt="">
             </div>
-            <div class="text-white">
+            <div class="sub-card d-flex flex-column justify-content-between text-white">
                 <h5 class="py-3">
                     {{character.name}}
                 </h5>
@@ -57,6 +57,17 @@ export default {
 
 <style lang="scss" scoped>
 .my_card{
-    min-height: 390px;
+    // min-height: 390px;
+    min-width: 150px;
+    
+    h5{
+        font-size: 1.15rem!important;
+    }
+
+    .sub-card{
+        min-height: 150px;
+    }
 }
+
+
 </style>
