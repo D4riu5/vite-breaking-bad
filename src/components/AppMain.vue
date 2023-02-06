@@ -1,9 +1,20 @@
 <script>
+import CharacterCard from './AppMain/CharacterCard.vue';
 
 export default {
     name: 'AppMain',
     components: {
-
+        CharacterCard,
+    },
+    props: {
+        charactersList: {
+            type: Array,
+            default: [],
+        },
+        charactersCount: {
+            type: Number,
+            default: 0,
+        },
     },
     data() {
         return {
@@ -34,23 +45,11 @@ export default {
                     </div>
                     <div class="p-4 bg-secondary mb-5">
                         <div class="bg-dark text-white p-2">
-                            Found "some" cards
+                            Found {{ charactersCount }} cards
                         </div>
                         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 p-4">
-                            <div v-for="i in 20" class="col text-center">
-                                <div class="bg-primary p-3 my-2">
-                                    <div>
-                                        <img class="img-fluid" src="https://picsum.photos/200/300" alt="">
-                                    </div>
-                                    <div>
-                                        <h5 class="py-3">
-                                            Character name
-                                        </h5>
-                                        <h6>
-                                            Char status
-                                        </h6>
-                                    </div>
-                                </div>
+                            <div v-for="character in charactersList" class="col text-center">
+                                <CharacterCard :character="character"/>
                             </div>
                         </div>    
                     </div>
