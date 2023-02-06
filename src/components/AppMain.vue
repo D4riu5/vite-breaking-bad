@@ -1,24 +1,26 @@
 <script>
 import CharacterCard from './AppMain/CharacterCard.vue';
+import { store } from "../store.js";
 
 export default {
     name: 'AppMain',
     components: {
         CharacterCard,
+        store,
     },
-    props: {
-        charactersList: {
-            type: Array,
-            default: [],
-        },
-        charactersCount: {
-            type: Number,
-            default: 0,
-        },
-    },
+    // props: {
+    //     charactersList: {
+    //         type: Array,
+    //         default: [],
+    //     },
+    //     charactersCount: {
+    //         type: Number,
+    //         default: 0,
+    //     },
+    // },
     data() {
         return {
-            
+            store,
         }
     },
     methods:{
@@ -45,12 +47,14 @@ export default {
                     </div>
                     <div class="p-4 bg-secondary mb-5">
                         <div class="bg-dark text-white p-2">
-                            Found {{ charactersCount }} cards
+                            Found {{ store.characters.length }} cards
                         </div>
                         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 p-4">
-                            <div v-for="character in charactersList" class="col text-center">
+                            <!-- <div v-for="character in store.characters" class="col text-center">
                                 <CharacterCard :character="character"/>
-                            </div>
+                            </div> -->
+
+                            <CharacterCard/>
                         </div>    
                     </div>
                 </div>

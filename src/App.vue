@@ -2,6 +2,7 @@
 import AppHeader from './components/AppHeader.vue';
 import AppMain from './components/AppMain.vue';
 import axios from 'axios';
+import { store } from "./store.js";
 
 export default {
   name: "App",
@@ -10,9 +11,10 @@ export default {
     AppMain,
   },
   data() {
-        return {
-          characters: '',
-          apiLoaded: false,
+    return {
+          store,
+          // characters: '',
+          // apiLoaded: false,
         }
     },
   methods:{
@@ -24,9 +26,9 @@ export default {
       .then(
         resp => {
 
-          this.characters = resp.data.data.slice(0, 20);
-            if (this.characters.length == 20) {
-              this.apiLoaded = true;
+          this.store.characters = resp.data.data.slice(0, 20);
+            if (this.store.characters.length == 20) {
+              this.store.apiLoaded = true;
             }
     });
   }
@@ -37,7 +39,8 @@ export default {
 
 <template>
   <AppHeader/>
-  <AppMain :charactersList="characters" :charactersCount="characters.length"/>
+  <!-- <AppMain :charactersList="characters" :charactersCount="characters.length"/> -->
+  <AppMain/>
 </template>
 
 

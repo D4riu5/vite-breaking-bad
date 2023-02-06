@@ -1,16 +1,17 @@
 <script>
+import { store } from "../../store.js";
 
 export default {
     name: 'CharacterCard',
     components: {
-
+        store,
     },
-    props: {
-        character: Object
-    },
+    // props: {
+    //     character: Object
+    // },
     data() {
         return {
-            
+            store,
         }
     },
     methods:{
@@ -21,11 +22,11 @@ export default {
 
 
 <template>
-    <div class="bg-primary p-3 my-2 my_card">
+    <!-- <div class="bg-primary p-3 my-2 my_card">
         <div>
             <img class="img-fluid" :src="character.card_images[0].image_url" alt="">
         </div>
-        <div class="">
+        <div class="text-white">
             <h5 class="py-3">
                 {{character.name}}
             </h5>
@@ -33,7 +34,24 @@ export default {
                 {{character.race}}
             </h6>
         </div>
+    </div> -->
+
+    <div v-for="character in store.characters" class="col text-center">
+        <div class="bg-primary p-3 my-3 my_card">
+            <div>
+                <img class="img-fluid" :src="character.card_images[0].image_url" alt="">
+            </div>
+            <div class="text-white">
+                <h5 class="py-3">
+                    {{character.name}}
+                </h5>
+                <h6>
+                    {{character.race}}
+                </h6>
+            </div>
+        </div>
     </div>
+    
 </template>
 
 

@@ -1,13 +1,14 @@
 <script>
+import { store } from "../store.js";
 
 export default {
     name: 'AppHeader',
     components: {
-
+        store,
     },
     data() {
         return {
-            
+            store,
         }
     },
     methods:{
