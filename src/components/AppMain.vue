@@ -45,18 +45,22 @@ export default {
                             </select>
                         </div>
                     </div>
-                    <div class="p-4 bg-secondary mb-5">
+                    <div v-if="store.apiLoaded" class="p-4 bg-secondary mb-5">
                         <div class="bg-dark text-white p-2">
                             Found {{ store.characters.length }} cards
                         </div>
-                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 p-4">
+                        <div  class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 p-4">
                             <!-- <div v-for="character in store.characters" class="col text-center">
                                 <CharacterCard :character="character"/>
                             </div> -->
 
                             <CharacterCard/>
-                        </div>    
+                            
+                        </div>   
                     </div>
+                    <div v-else class="py-5 d-flex justify-content-center">
+                        <span class="loader"></span>
+                    </div> 
                 </div>
             </div>
         </div>    
@@ -66,12 +70,34 @@ export default {
 
 <style lang="scss" scoped>
 main{
-    height: 100%;
+    min-height: 100vh;
 
     img{
         width: 100%;
         aspect-ratio: 1.4/2;
     }
+
+
+    // Spinner
+    .loader {
+        width: 88px;
+        height: 88px;
+        border: 5px solid #FFF;
+        border-bottom-color: transparent;
+        border-radius: 50%;
+        display: inline-block;
+        box-sizing: border-box;
+        animation: rotation 1s linear infinite;
+    }
+
+    @keyframes rotation {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    } 
 
 }
 </style>
