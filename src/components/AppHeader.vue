@@ -1,7 +1,7 @@
 <script>
 
 export default {
-    name: 'Component1',
+    name: 'AppHeader',
     components: {
 
     },
@@ -18,9 +18,14 @@ export default {
 
 
 <template>
+    <header class="text-white p-4 bg-secondary">
 
+        <h2>Yu-Gi-Oh Api</h2>
+
+    </header>
 </template>
 
 
 <style lang="scss" scoped>
 </style>
+ 
