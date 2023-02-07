@@ -18,20 +18,34 @@ export default {
         }
     },
   methods:{
-      
+    getCharacters() {
+      axios
+        .get('https://db.ygoprodeck.com/api/v7/cardinfo.php', {
+          // params: {
+          //     race: this.store.raceValue
+          //   }
+        })
+        .then(
+          resp => {
+
+            this.store.characters = resp.data.data.slice(0, 20);
+            this.store.apiLoaded = true;
+      });
+    },
+    getArchetypes() {
+      axios
+        .get('https://db.ygoprodeck.com/api/v7/archetypes.php')
+        .then(
+          resp => {
+            this.store.archetypes = resp.data
+          }
+        )
+    }
   },
   created() {
-    axios
-      .get('https://db.ygoprodeck.com/api/v7/cardinfo.php')
-      .then(
-        resp => {
-
-          this.store.characters = resp.data.data.slice(0, 20);
-            if (this.store.characters.length == 20) {
-              this.store.apiLoaded = true;
-            }
-    });
-  }
+    this.getCharacters();
+    this.getArchetypes()
+  },
     
 };
 </script>

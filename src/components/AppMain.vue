@@ -37,11 +37,9 @@ export default {
                 <div class="col-10 offset-1">
                     <div class="row py-4">
                         <div class="col-3">
-                            <select class="form-select" aria-label="Default select example">
-                                <option disabled selected>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                            <select v-model="store.raceValue" class="form-select" aria-label="Default select example">
+                                <option value="" selected>Select Archetype</option>
+                                <option v-for="archetype in store.archetypes" :value="archetype.archetype_name">{{ archetype.archetype_name}}</option>
                             </select>
                         </div>
                     </div>
