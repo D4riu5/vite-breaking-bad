@@ -1,6 +1,7 @@
 <script>
 import CharacterCard from './AppMain/CharacterCard.vue';
 import { store } from "../store.js";
+import axios from 'axios';
 
 export default {
     name: 'AppMain',
@@ -24,8 +25,34 @@ export default {
         }
     },
     methods:{
-        
+    getCharacters() {
+
+      let url = `https://db.ygoprodeck.com/api/v7/cardinfo.php`;
+      this.store.archetype ? url += `?archetype=${this.store.archetype}` : url;
+
+      axios
+        .get(url)
+        .then(
+          resp => {
+
+            this.store.characters = resp.data.data.slice(0, 20);
+            this.store.apiLoaded = true;
+      });
     },
+    getArchetypes() {
+      axios
+        .get('https://db.ygoprodeck.com/api/v7/archetypes.php')
+        .then(
+          resp => {
+            this.store.archetypes = resp.data
+          }
+        )
+    }
+  },
+  created() {
+    this.getCharacters();
+    this.getArchetypes()
+  },
 }
 </script>
 
@@ -37,7 +64,7 @@ export default {
                 <div class="col-10 offset-1">
                     <div class="row py-4">
                         <div class="col-3">
-                            <select v-model="store.raceValue" class="form-select" aria-label="Default select example">
+                            <select @change="getCharacters()" v-model="store.archetype" class="form-select" aria-label="Default select example">
                                 <option value="" selected>Select Archetype</option>
                                 <option v-for="archetype in store.archetypes" :value="archetype.archetype_name">{{ archetype.archetype_name}}</option>
                             </select>
